@@ -2,51 +2,56 @@ from tkinter import *
 from subprocess import call
 import os
 
-def get_url_and_download(event=None):
-    """
-    Function to fetch the URL from the GUI and call the audio download script.
-    Also clears the entry field after initiating the download.
-    """
+def get_url_and_download_audio(event=None):
     url = url_entry.get()
     call(["python", "download_audio.py", url])
     url_entry.delete(0, 'end')  # Clear the input field
 
+def get_url_and_download_video(event=None):
+    url = url_entry.get()
+    call(["python", "video_downloader.py", url])
+    url_entry.delete(0, 'end')  # Clear the input field
+
 def on_enter(e):
-    """Function to create hover effect on button."""
-    download_btn['background'] = 'lightblue'
+    e.widget['background'] = 'lightblue'
 
 def on_leave(e):
-    """Function to remove hover effect when mouse leaves button."""
-    download_btn['background'] = 'blue'
+    e.widget['background'] = 'blue'
 
 def on_click(e):
-    """Function to create click-depress effect on button."""
-    download_btn['relief'] = SUNKEN
+    e.widget['relief'] = SUNKEN
 
-def on_release(e):
-    """Function to remove click-depress effect when mouse button is released."""
-    download_btn['relief'] = RAISED
-    get_url_and_download()  # Call download function on button release
+def on_release_audio(e):
+    e.widget['relief'] = RAISED
+    get_url_and_download_audio()  # Call download function on button release
+
+def on_release_video(e):
+    e.widget['relief'] = RAISED
+    get_url_and_download_video()  # Call download function on button release
 
 root = Tk()
-root.geometry("400x400")  # Set window size to 400x400
-root.title("YouTube Audio Downloader")  # Set the title of the window
-root.configure(bg="light gray")  # Set the background color
+root.geometry("400x400")  
+root.title("YouTube Downloader")
+root.configure(bg="light gray")
 
-# Create a label with custom font and color
 Label(root, text="Enter YouTube URL:", font=("Arial", 14), bg="lightgrey", fg="black").pack(pady=10)
 
 url_entry = Entry(root, font=("Arial", 14))
 url_entry.pack(pady=10)
-url_entry.bind('<Return>', get_url_and_download)  # Bind Enter key to the function
+url_entry.bind('<Return>', get_url_and_download_audio)  # Bind Enter key to the audio download function
 
-download_btn = Button(root, text="Download", font=("Arial", 14), bg="blue", fg="white")
-download_btn.pack(pady=10)
+download_audio_btn = Button(root, text="Download Audio", font=("Arial", 14), bg="blue", fg="white")
+download_audio_btn.pack(pady=10)
+download_audio_btn.bind("<Enter>", on_enter)
+download_audio_btn.bind("<Leave>", on_leave)
+download_audio_btn.bind("<Button-1>", on_click)
+download_audio_btn.bind("<ButtonRelease-1>", on_release_audio)
 
-# Bind mouse events to the button
-download_btn.bind("<Enter>", on_enter)
-download_btn.bind("<Leave>", on_leave)
-download_btn.bind("<Button-1>", on_click)
-download_btn.bind("<ButtonRelease-1>", on_release)
+download_video_btn = Button(root, text="Download Video", font=("Arial", 14), bg="blue", fg="white")
+download_video_btn.pack(pady=10)
+download_video_btn.bind("<Enter>", on_enter)
+download_video_btn.bind("<Leave>", on_leave)
+download_video_btn.bind("<Button-1>", on_click)
+download_video_btn.bind("<ButtonRelease-1>", on_release_video)
 
 root.mainloop()
