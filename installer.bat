@@ -23,3 +23,8 @@ if %errorlevel% neq 0 (
 )
 
 
+REM Install yt-dlp
+echo Installing yt-dlp...
+pip install yt-dlp
+pip install Pillow
+

@@ -29,6 +29,9 @@ def on_release_video(e):
     e.widget['relief'] = RAISED
     get_url_and_download_video()  # Call download function on button release
 
+def show_context_menu(e):
+    context_menu.tk_popup(e.x_root, e.y_root)
+
 root = Tk()
 root.geometry("400x400")  
 root.title("YouTube Downloader")
@@ -39,6 +42,11 @@ Label(root, text="Enter YouTube URL:", font=("Arial", 14), bg="lightgrey", fg="b
 url_entry = Entry(root, font=("Arial", 14))
 url_entry.pack(pady=10)
 url_entry.bind('<Return>', get_url_and_download_audio)  # Bind Enter key to the audio download function
+
+# Create context menu
+context_menu = Menu(root, tearoff=0)
+context_menu.add_command(label="Paste", command=lambda: url_entry.event_generate('<<Paste>>'))
+url_entry.bind("<Button-3>", show_context_menu)
 
 download_audio_btn = Button(root, text="Download Audio", font=("Arial", 14), bg="blue", fg="white")
 download_audio_btn.pack(pady=10)
