@@ -15,7 +15,7 @@ YouTube Audio Downloader is a command line program that downloads audio from You
 Clone the repository:
 
 ```bash
-git clone https://github.com/cce2955/youtube-audio-downloader.git
+git clone https://github.com/cce2955/ytdownloadereasyinstall.git
 cd youtube-audio-downloader
 ```
 
