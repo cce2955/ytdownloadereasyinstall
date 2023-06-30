@@ -18,10 +18,10 @@ Clone the repository:
 git clone https://github.com/cce2955/ytdownloadereasyinstall.git
 cd youtube-audio-downloader
 ```
-Run "installer.bat", if it keeps running into an error, run "installer.bat" as Administrator.
-Once everything is installed, run "Download.bat"
-Paste your URL and click either Download Audio or Download Video
-Downloaded videos appear in the "Download" folder in the same directory
+- Run "installer.bat", if it keeps running into an error, run "installer.bat" as Administrator.
+- Once everything is installed, run "Download.bat"
+- Paste your URL and click either Download Audio or Download Video
+- Downloaded videos appear in the "Download" folder in the same directory
 
 ## Usage
 
